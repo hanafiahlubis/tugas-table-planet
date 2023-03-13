@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jarvis</title>
+    <style>
+        body{
+            background-color: gray;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+       th,
+      td,caption {
+        border: 1px solid;
+        color: #fff;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+        <caption> Table Planet</caption>
+        <tr>
+            <th>Nama</th>
+            <th>Diameter</th>
+            <th>Gravity</th>
+            <th>Mean temperature</th>
+            <th>Number of moons</th>
+        </tr>
+    </table>
+    <script>
+      async function tampil_mahasiswa() {
+        const res = await fetch("/api/planet");
+        const data = await res.json();
+        console.log(data);
+        const table = document.querySelector("table");  
+        data.forEach(e => {
+            const tr = document.createElement("tr"); 
+            const td = document.createElement("td");     
+            const td2 = document.createElement("td");   
+            const td3 = document.createElement("td");   
+            const td4 = document.createElement("td");   
+            const td5 = document.createElement("td");   
+            td.textContent= e.nama;
+            td2.textContent= e.diameter;
+            td3.textContent= e.gravitasi;
+            td4.textContent= e.suhu;
+            td5.textContent= e.jumlah_bulan;
+
+            tr.appendChild(td);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            table.appendChild(tr);
+
+        });
+        
+        
+
+      }tampil_mahasiswa();
+    </script>
+  </body>
+</html>
